@@ -3,13 +3,17 @@ import {Component} from "@angular/core";
  * Created by lv-wei on 2017-02-23.
  */
 
-@Component ({
+@Component({
+  moduleId: module.id,
   selector: 'my-app',
   template: `<h1>{{title}}</h1>
-               <a routerLink="/heroes">Heroes</a>
-               <a routerLink="/dashboard">Dashboard</a>
-               <router-outlet></router-outlet>
-            `
+             <nav>
+               <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+               <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+              </nav>
+              <router-outlet></router-outlet>
+            `,
+  styleUrls: ['app.component.css']
 })
 
 export class AppComponent {

@@ -2,36 +2,34 @@ import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
 import {AppComponent} from "./app.component";
-import {HeroDetialComponent} from "./hero-detail.component";
+import {HeroDetailComponent} from "./hero-detail.component";
 import {HeroesComponent} from "./heroes.component";
 import {HeroService} from "./hero.service";
-import {RouterModule} from "@angular/router";
 import {DashboardComponent} from "./dashboard.component";
+import {AppRoutingModule} from "./app-routing.module";
+import {HttpModule} from "@angular/http";
+import {InMemoryWebApiModule} from "angular-in-memory-web-api";
+import {InMemoryDataService} from "./in-memory-data.service";
+import {HeroSearchService} from "./hero-search.service";
+import {HeroSearchComponent} from "./hero-search.component";
 
 @NgModule({
-  imports:      [
+  imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot([
-      {
-        path: 'heroes',
-        component: HeroesComponent
-      },
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      }
-    ])
+    AppRoutingModule,
+    HttpModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   declarations: [
     AppComponent,
-    HeroDetialComponent,
-    HeroesComponent
+    HeroDetailComponent,
+    HeroesComponent,
+    DashboardComponent,
+    HeroSearchComponent
   ],
-  bootstrap:    [ AppComponent ],
-  providers: [HeroService]
+  bootstrap: [AppComponent],
+  providers: [HeroService, HeroSearchService]
 })
-
-
-
-export class AppModule { }
+export class AppModule {
+}
